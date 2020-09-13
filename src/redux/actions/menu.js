@@ -1,5 +1,7 @@
 import * as actions from './actionTypes';
 import { getMenu } from "../../utils/reqData";
+import { getMenuSearch } from "../../utils/reqData";
+
 
 
 
@@ -46,3 +48,10 @@ export const clearCart= () => {
     type: actions.CLEAR_CART
   }
 }
+
+export const searchMenu = (menu_name) => {
+  return {
+    type: actions.MENU_FETCH_SEARCH,
+    payload: getMenuSearch(menu_name)
+  };
+};

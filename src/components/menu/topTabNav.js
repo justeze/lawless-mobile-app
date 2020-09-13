@@ -1,13 +1,19 @@
 import React from 'react';
 // import Icon from 'react-native-vector-icons/Ionicons';
 import { View, Image, TextInput, StyleSheet } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { searchMenu } from '../../redux/actions/menu'
 
 const TopTabNav = () => {
+    const dispatch = useDispatch();
+    
     return (
         <>
             <View style={style.primContainer}>
                 <View style={style.secContainer}>
-                    <TextInput placeholder="What do you want ?" style={style.search} />
+                    <TextInput placeholder="What do you want ?" style={style.search} onChangeText={(char) =>
+                        dispatch(searchMenu(char, 'menu_name'))
+                    } />
                     <Image source={require("../../assets/img/loupe.png")} style={style.searchImg} />
                 </View>
             </View>
@@ -18,8 +24,8 @@ export default TopTabNav;
 
 const style = StyleSheet.create({
     primContainer: {
-      flexDirection: 'row',
-      paddingVertical: 10,
+        flexDirection: 'row',
+        paddingVertical: 10,
     },
     secContainer: {
         position: "relative",
@@ -42,4 +48,4 @@ const style = StyleSheet.create({
         left: 15,
         top: 12
     },
-  });
+});

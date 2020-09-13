@@ -12,7 +12,7 @@ const Menu = () => {
     useEffect(() => {
         dispatch(requestMenuCreator())
     }, [])
-
+    console.log(menu)
     return (
         <>
             <ScrollView>

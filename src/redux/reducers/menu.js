@@ -8,7 +8,7 @@ const initialState = {
   isFulfilled: false
 }
 
-const menuReducer = (state = initialState, {type, payload}) => {
+const menuReducer = (state = initialState, { type, payload }) => {
   let newCart = [...state.carts]
   switch (type) {
     case actions.MENU_FETCH + actions.PENDING:
@@ -88,6 +88,25 @@ const menuReducer = (state = initialState, {type, payload}) => {
       return {
         ...state,
         carts: []
+      }
+    case actions.MENU_FETCH_SEARCH + actions.PENDING:
+      return {
+        ...state,
+        isPending: true,
+      }
+    case actions.MENU_FETCH_SEARCH + actions.REJECTED:
+      return {
+        ...state,
+        isRejected: true,
+        isPending: false,
+        error: payload,
+      }
+    case actions.MENU_FETCH_SEARCH + actions.FULFILLED:
+      return {
+        ...state,
+        isFulfilled: true,
+        isPending: false,
+        menus: payload.data.data,
       }
     default:
       return state
