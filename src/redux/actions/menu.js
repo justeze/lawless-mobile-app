@@ -2,9 +2,6 @@ import * as actions from './actionTypes';
 import { getMenu } from "../../utils/reqData";
 import { getMenuSearch } from "../../utils/reqData";
 
-
-
-
 export const requestMenuCreator = () => {
   // console.log('action')
   return {
@@ -21,6 +18,15 @@ export const addToCart = (id, name, price, img) => {
           qty: 1,
           price,
           img,
+      }
+  }
+}
+
+export const deleteCart = (id) => {
+  return {
+      type: actions.DELETE_CART,
+      payload: {
+          id: id,
       }
   }
 }

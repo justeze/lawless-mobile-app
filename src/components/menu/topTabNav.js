@@ -34,8 +34,8 @@ const style = StyleSheet.create({
     },
     search: {
         borderWidth: 1,
-        borderColor: "#e8e8e8",
-        borderRadius: 25,
+        borderColor: "black",
+        borderRadius: 15,
         fontSize: 16,
         paddingLeft: 50,
         paddingRight: 25,

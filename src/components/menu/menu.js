@@ -2,17 +2,17 @@ import React, { Fragment, useEffect } from 'react';
 import { Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Card, CardItem } from 'native-base';
 import { useSelector, useDispatch } from 'react-redux';
-import { requestMenuCreator } from '../../redux/actions/menu'
+import { requestMenuCreator, addToCart } from '../../redux/actions/menu'
 
 
 const Menu = () => {
-    const dispatch = useDispatch()
     const menu = useSelector((state) => state.menu.menus);
-    // console.log(menu)
+    const dispatch = useDispatch()
     useEffect(() => {
         dispatch(requestMenuCreator())
     }, [])
-    console.log(menu)
+    // console.log(menu)
+
     return (
         <>
             <ScrollView>
@@ -21,14 +21,16 @@ const Menu = () => {
                         <Fragment>
                             {menu.map((item) => {
                                 return (
-                                    <TouchableOpacity key={item.id}>
-                                        <Card style={{ width: 150 }}>
+                                    <TouchableOpacity key={item.id} onPress={() => {
+                                        dispatch(addToCart(item.id, item.menu_name, item.menu_price, item.menu_img))
+                                    }}>
+                                        <Card style={{ height: 180, width: 150, borderRadius: 10 }}>
                                             <CardItem cardBody>
                                                 <Image
                                                     source={{
                                                         uri: item.menu_img,
                                                     }}
-                                                    style={{ height: 100, width: null, flex: 1 }}
+                                                    style={{ height: 100, width: null, flex: 1, borderRadius: 10 }}
                                                 />
                                             </CardItem>
                                             <CardItem style={{ justifyContent: 'center' }}>
@@ -49,7 +51,7 @@ const Menu = () => {
                         </Fragment>
                     ) : (
                             <Text style={{ fontSize: 18, fontWeight: 'bold', marginTop: 20 }}>
-                                Loading...
+                                Loading ...
                             </Text>
                         )
                     }

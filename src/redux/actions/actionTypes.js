@@ -6,6 +6,7 @@ export const DECREASE_QUANTITY = 'decQty';
 export const ADD_TO_CART = 'addToCart';
 export const CLEAR_CART = 'clearCart';
 export const AUTH_LOGIN = 'authLogin'
+export const DELETE_CART = 'deleteCart'
 export const MENU_FETCH_SEARCH = 'menuFetchSearch'
 
 
