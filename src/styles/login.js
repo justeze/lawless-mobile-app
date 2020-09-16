@@ -32,7 +32,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     marginTop: 20,
     borderRadius: 8,
-    backgroundColor: 'black',
+    backgroundColor: 'brown',
     height: 45,
   },
   txtBtnLogin: {

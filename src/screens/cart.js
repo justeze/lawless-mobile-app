@@ -16,7 +16,7 @@ const Cart = () => {
                 <ScrollView style={style.listCont} showsVerticalScrollIndicator={false}>
                     {cart.length ?
                         cart.map((item) => {
-                            console.log(cart)
+                            // console.log(cart)
                             return (
                                 <View key={item.id}>
                                     <TouchableOpacity press style={style.list} >

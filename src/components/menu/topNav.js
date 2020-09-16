@@ -1,10 +1,10 @@
 import React from 'react';
-// import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { View, Image, TextInput, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { searchMenu } from '../../redux/actions/menu'
 
-const TopTabNav = () => {
+const TopNav = () => {
     const dispatch = useDispatch();
     
     return (
@@ -15,12 +15,15 @@ const TopTabNav = () => {
                         dispatch(searchMenu(char, 'menu_name'))
                     } />
                     <Image source={require("../../assets/img/loupe.png")} style={style.searchImg} />
+
                 </View>
+                <Icon name='align-right' style={style.filterIcon} size={20}/>
+
             </View>
         </>
     );
 };
-export default TopTabNav;
+export default TopNav;
 
 const style = StyleSheet.create({
     primContainer: {
@@ -39,7 +42,7 @@ const style = StyleSheet.create({
         fontSize: 16,
         paddingLeft: 50,
         paddingRight: 25,
-        maxWidth: 380
+        maxWidth: 340
     },
     searchImg: {
         width: 25,
@@ -48,4 +51,8 @@ const style = StyleSheet.create({
         left: 15,
         top: 12
     },
+    filterIcon: {
+        right: 20,
+        top: 12
+    }
 });
