@@ -1,40 +1,73 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
+import { Overlay } from 'react-native-elements';
 import { Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { LoggedOut } from '../redux/actions/auth'
+import { clearCart } from '../redux/actions/menu'
+
+import imgPlaceholder from '../assets/img/imgPlaceholder.png'
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
-// import Logout from 'react-native-vector-icons/AntDesign';
-import user from '../assets/img/wiener.png';
 import style from '../styles/userProfile'
 
 
-const UserProfile = () => {
+const UserProfile = ({ navigation }) => {
+    const dispatch = useDispatch();
+    const [visible, setVisible] = useState(false);
+    const [logout, setLogout] = useState(false);
+
+    const auth = useSelector((state) => state.auth.data);
+    
+    const toggleOverlay = () => {
+        setVisible(!visible);
+    };
+
+    // console.log(auth)
+    useEffect(() => {
+        if (logout) {
+            dispatch(clearCart());
+            dispatch(LoggedOut());
+            setLogout(false);
+            // console.log(logOut)
+            navigation.navigate('Login');
+        }
+    }, [dispatch, logout, navigation]);
+
+    const handleLogout = () => {
+        setLogout(true);
+    };
+
     return (
-        <ScrollView style={style.container}>
+        <ScrollView style={{ flex: 1 }}>
             <View style={style.header}>
-                <TouchableOpacity
-                    style={style.logout}>
-                    <Icon name="logout" size={15} color={'white'} />
-                    <Text style={style.logoutText}>Logout</Text>
-                </TouchableOpacity>
                 <View style={style.photo}>
-                    <Image source={user} style={style.userImg} />
+                    {auth.data === null ? <Image source={imgPlaceholder} style={style.userImg} />
+                        : auth.data.avatar.length ? <Image source={{uri: auth.data.avatar}} style={style.userImg} /> 
+                        : <Image source={imgPlaceholder} style={style.userImg} />}
                 </View>
-                <Text style={style.name}>Kambing</Text>
-                <Text style={style.id}>@email</Text>
-                <View style={style.btnContainer}>
-                    <TouchableOpacity
-                        style={style.orderHistory}>
-                        <Icon name="calendar" size={15} color={'white'} />
-                        <Text style={style.orderHistoryText}>Order History</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={style.updateProfile}>
-                        <Icon name="user" size={15} color={'white'} />
-                        <Text style={style.updateProfileText}>Update Profile</Text>
-                    </TouchableOpacity>
-                </View>
+                <Text style={style.name}>{auth.data.username}</Text>
+                <Text style={style.id}>{auth.data.email}</Text>
             </View>
-            {/* <Overlay
+            <View style={style.footer}>
+                <TouchableOpacity
+                    style={style.orderHistory}>
+                    <Icon name="calendar" size={25} color={'black'} />
+                    <Text style={style.orderHistoryText}>Order History</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={style.orderHistory}>
+                    <Icon name="user" size={25} color={'black'} />
+                    <Text style={style.orderHistoryText}>Update Profile</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={style.orderHistory} onPress={() => {
+                        toggleOverlay();
+                    }}>
+                    <Icon name="logout" size={25} color={'black'} />
+                    <Text style={style.orderHistoryText}>Logout</Text>
+                </TouchableOpacity>
+            </View>
+            <Overlay
                 isVisible={visible}
                 onBackdropPress={toggleOverlay}
                 overlayStyle={style.promp}>
@@ -42,8 +75,8 @@ const UserProfile = () => {
                 <View style={style.btn}>
                     <TouchableOpacity
                         onPress={() => {
-                            navigation.navigate('auth');
                             toggleOverlay();
+                            handleLogout()
                         }}
                         style={style.yes}>
                         <Text style={style.str}>yes</Text>
@@ -52,7 +85,7 @@ const UserProfile = () => {
                         <Text style={style.str}>no</Text>
                     </TouchableOpacity>
                 </View>
-            </Overlay> */}
+            </Overlay>
         </ScrollView>
     )
 }

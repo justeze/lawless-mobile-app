@@ -1,12 +1,10 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   header: {
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'stretch',
     height: 350,
     backgroundColor: 'brown',
   },
@@ -25,66 +23,55 @@ export default StyleSheet.create({
   name: {
     paddingTop: 15,
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 25,
     color: 'white',
   },
   id: {
     color: 'white',
     fontWeight: 'bold',
   },
-  btnContainer: {
-    flexDirection: 'row',
-    marginTop: -12,
-    marginLeft: 10
+  footer: {
+    alignSelf: 'center',
+    top: 20,
+    padding: 10,
   },
   orderHistory: {
-    height: 45,
-    width: 150,
+    height: 55,
+    width: 350,
     padding: 20,
     flexDirection: 'row',
     alignItems: 'center',
     borderTopWidth: 2,
-    borderTopColor: 'white',
-    top: 30,
+    borderTopColor: 'black',
     marginRight: 5
   },
   orderHistoryText: {
     marginLeft: 12,
-    fontSize: 12,
-    fontWeight: 'bold',
-    color: 'white'
+    fontSize: 18,
+    color: 'black'
   },
-  updateProfile: {
-    height: 45,
-    padding: 20,
-    width: 150,
-    flexDirection: 'row',
+  promp: {
+    width: '70%',
+    height: 140,
     alignItems: 'center',
-    borderTopWidth: 2,
-    borderTopColor: 'white',
-    top: 30,
+    justifyContent: 'space-around',
   },
-  updateProfileText: {
-    marginLeft: 12,
-    fontSize: 12,
-    fontWeight: 'bold',
-    color: 'white'
-  },
-  logout: {
-    height: 45,
-    padding: 20,
-    flexDirection: 'row',
+  btn: {
     alignItems: 'center',
-    borderBottomWidth: 2,
-    borderBottomColor: 'white',
-    top: -25,
-    alignSelf: 'flex-end',
-    marginLeft: 5,
+    justifyContent: 'space-around',
+    width: '90%',
+    flexDirection: 'row',
   },
-  logoutText: {
-    marginLeft: 12,
-    fontSize: 12,
-    fontWeight: 'bold',
-    color: 'white'
+  yes: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+    height: 40,
+    width: 70,
+    padding: 8,
+    backgroundColor: 'black',
+  },
+  str: {
+    color: 'white',
   },
 });

@@ -1,14 +1,14 @@
 import * as actions from "../actions/actionTypes";
 
 const initialState = {
-  data: null,
+  data: {},
   isAdmin: false,
   isLogin: false,
   isPending: false,
   isFulfilled: false,
   isRejected: false,
 };
- 
+
 const authReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case actions.AUTH_LOGIN + actions.PENDING:
@@ -24,10 +24,10 @@ const authReducer = (state = initialState, { type, payload }) => {
         isPending: false,
       };
     case actions.AUTH_LOGIN + actions.FULFILLED:
+      // console.log(payload.data)
       let admin = null;
       let login = null;
       if (payload.data.isSuccess) {
-        // console.log(payload.data.data.level_id)
         if (payload.data.data.level_id === 1) {
           admin = true;
           login = true;
@@ -47,6 +47,15 @@ const authReducer = (state = initialState, { type, payload }) => {
         isRejected: false,
         isAdmin: admin,
         isLogin: login,
+      };
+    case actions.AUTH_LOGOUT:
+      return {
+        data: {},
+        isAdmin: false,
+        isLogin: false,
+        isPending: false,
+        isFulfilled: false,
+        isRejected: false,
       };
     default:
       return state;

@@ -83,12 +83,12 @@ export default StyleSheet.create({
     paddingHorizontal: 5,
     justifyContent: 'space-between'
   },
-  totalText:{
+  totalText: {
     padding: 10,
     color: 'black',
     fontSize: 20,
   },
-  priceText:{
+  priceText: {
     padding: 10,
     color: 'black',
     fontSize: 20,
@@ -96,12 +96,36 @@ export default StyleSheet.create({
   order: {
     padding: 10,
     height: 50,
-    backgroundColor: 'black',
+    backgroundColor: 'brown',
     borderRadius: 5,
   },
   orderText: {
     textAlign: 'center',
     color: 'white',
     fontSize: 20,
-  }
+  },
+  promp: {
+    width: '70%',
+    height: 140,
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  btn: {
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    width: '90%',
+    flexDirection: 'row',
+  },
+  yes: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+    height: 40,
+    width: 70,
+    padding: 8,
+    backgroundColor: 'black',
+  },
+  str: {
+    color: 'white',
+  },
 });

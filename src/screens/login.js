@@ -1,13 +1,9 @@
-
-/* eslint-disable prettier/prettier */
-import React, { useState, useEffect } from 'react';
-import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react'
+import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
+import { useSelector, useDispatch } from 'react-redux'
 import { authLoginCreator } from '../redux/actions/auth'
 
 import style from '../styles/login';
-// import background from '../image/berry.jpg';
-// import logo from '../image/spoon.png';
 
 const Login = ({ navigation }) => {
     const dispatch = useDispatch();
@@ -18,9 +14,13 @@ const Login = ({ navigation }) => {
 
     useEffect(() => {
         if (login) {
-            return navigation.navigate('BottomTab');
+            navigation.navigate('BottomTab');
         }
     }, [auth]);
+    // console.log(login)
+    // if (login) {
+    //     navigation.navigate('BottomTab');
+    // }
 
     return (
         <View style={style.container}>
@@ -37,15 +37,17 @@ const Login = ({ navigation }) => {
                         secureTextEntry={true}
                         style={style.input} onChangeText={(text) => setForm({ ...form, password: text })} />
                     <TouchableOpacity
-                        style={style.btnLogin}>
-                        <Text style={style.txtBtnLogin} onPress={() => {
+                        style={style.btnLogin} onPress={() => {
                             dispatch(authLoginCreator(form.name, form.password))
                             // console.log(form.name)
                             // console.log(form.password)
-                        }}>LOGIN</Text>
+                        }}>
+                        <Text style={style.txtBtnLogin} >LOGIN</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={style.regis}>
+                        style={style.regis} onPress={() => {
+                            navigation.navigate('Register')
+                        }}>
                         <Text style={style.loginRegis}>Don't have an account? Sign Up</Text>
                     </TouchableOpacity>
                 </View>

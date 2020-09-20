@@ -14,3 +14,12 @@ export const authLogin = (name, password) => {
     password: password,
   });
 }
+
+export const authRegister = (email, name, password) => {
+  return Axios.post(`http://192.168.0.4:3100/auth/register`, {
+    email: email,
+    username: name,
+    password: password,
+    level_id: 2
+  });
+}

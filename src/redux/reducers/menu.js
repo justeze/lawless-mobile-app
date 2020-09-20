@@ -113,7 +113,6 @@ const menuReducer = (state = initialState, { type, payload }) => {
         ...state,
         carts: []
       }
-
     default:
       return state
   }
