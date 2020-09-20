@@ -9,6 +9,7 @@ import configureStore from './src/redux/store';
 
 import Login from './src/screens/login'
 import Register from './src/screens/register'
+import UpdateData from './src/screens/updateData'
 import BottomTab from './src/components/menu/botTabNav'
 
 // import Register from './src/screens/register'
@@ -26,6 +27,7 @@ const App = () => {
                         <Stack.Navigator headerMode="none">
                             <Stack.Screen name='Login' component={Login} />
                             <Stack.Screen name="Register" component={Register} />
+                            <Stack.Screen name="UpdateData" component={UpdateData} />
                             <Stack.Screen name="BottomTab" component={BottomTab} options={{ headerShown: false }} />
                         </Stack.Navigator>
                         {/* <Register/> */}

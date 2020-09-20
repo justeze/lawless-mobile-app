@@ -49,7 +49,7 @@ export default StyleSheet.create({
   },
   desc: {
     alignSelf: 'flex-start',
-    width: '35%',
+    width: '30%',
   },
   delete: {
     alignSelf: 'flex-end',
@@ -59,7 +59,7 @@ export default StyleSheet.create({
   },
   deleteText: {
     color: 'white',
-    fontSize: 11,
+    fontSize: 15,
   },
   qty: {
     marginTop: 15,

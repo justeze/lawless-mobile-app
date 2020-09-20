@@ -101,6 +101,7 @@ const AddData = ({ navigation }) => {
                         onChangeText={(text) => setForm({ ...form, menuName: text })} />
                     <TextInput
                         style={style.input} value={form.menuPrice}
+                        keyboardType='numeric'
                         onChangeText={(text) => setForm({ ...form, menuPrice: text })} />
                     <Picker
                         selectedValue={form.category}
@@ -118,11 +119,11 @@ const AddData = ({ navigation }) => {
                         {form.image ? (
                             <Image
                                 source={form.image}
-                                style={{ width: 150, height: 100, marginTop: 100 }}
+                                style={{ width: 150, height: 100, alignSelf: 'center' }}
                             />
                         ) : (
                                 <Text
-                                    style={{ fontWeight: 'bold', fontSize: 20, marginTop: 35 }}>
+                                    style={{  fontSize: 15, marginTop: 35, alignSelf: 'center' }}>
                                     No Image
                                 </Text>
                             )}

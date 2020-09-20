@@ -3,6 +3,7 @@ import * as actions from '../actions/actionTypes';
 const initialState = {
   menus: [],
   carts: [],
+  editMenu: [],
   isPending: false,
   isRejected: false,
   isFulfilled: false
@@ -67,7 +68,7 @@ const menuReducer = (state = initialState, { type, payload }) => {
           carts: state.carts.concat(payload)
         }
       }
-      case actions.DELETE_CART:
+    case actions.DELETE_CART:
       const arrCart = state.carts.filter((item) => {
         return item.id !== payload.id;
       });
@@ -112,6 +113,18 @@ const menuReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         carts: []
+      }
+    case actions.EDIT_MENU:
+      if (payload.id == prevstate.id) {
+        return {
+          ...prevstate,
+          editData: { ...payload },
+        };
+      } else {
+        return {
+          ...prevstate,
+          editData: { ...payload },
+        };
       }
     default:
       return state
