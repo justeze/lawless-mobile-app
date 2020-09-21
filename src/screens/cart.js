@@ -15,16 +15,24 @@ const Cart = ({ navigation }) => {
 
     const dispatch = useDispatch()
 
-    // const deleteMenu = () => {
-    //     const URI = `http://192.168.43.116:8000/deleteproduct/${product.id_product}`;
-    //     return Axios.delete(URI).then((res) => {
-    //       dispatch(getAllMenuCreator());
-    //       setPage(2);
-    //     });
-    //   };
+    // const [menu, setProduct] = useState({
+    //     id: null,
+    //   });
+
+      
+    const deleteMenu = () => {
+        const URI = `http://192.168.0.4:3100/?id=${item.id}`;
+        return Axios.delete(URI).then((res) => {
+          dispatch(getAllMenuCreator());
+          setPage(2);
+        });
+      };
 
     const [visible, setVisible] = useState(false);
-    const toggleOverlay = () => {
+    const toggleOverlayRemove = () => {
+        setVisible(!visible)
+    }
+    const toggleOverlayDelete = () => {
         setVisible(!visible)
     }
 
@@ -75,7 +83,7 @@ const Cart = ({ navigation }) => {
                                         </View>
                                         {auth.isAdmin === false ?
                                             <TouchableOpacity style={style.delete} onPress={() => {
-                                                toggleOverlay();
+                                                toggleOverlayRemove();
                                             }}>
                                                 <Text style={style.deleteText}>Delete</Text>
                                             </TouchableOpacity> : null}
@@ -86,7 +94,9 @@ const Cart = ({ navigation }) => {
                                                 <Text style={style.deleteText}>Update</Text>
                                             </TouchableOpacity> : null}
                                         {auth.isAdmin === true ?
-                                            <TouchableOpacity style={{ ...style.delete, backgroundColor: 'brown' }}>
+                                            <TouchableOpacity style={{ ...style.delete, backgroundColor: 'brown' }} onPress={() => {
+                                                toggleOverlayDelete();
+                                            }} >
                                                 <Text style={style.deleteText}>Delete</Text>
                                             </TouchableOpacity>
                                             : null}
@@ -94,19 +104,40 @@ const Cart = ({ navigation }) => {
                                     <Overlay
                                         isVisible={visible}
                                         animationType={'fade'}
-                                        onBackdropPress={toggleOverlay}
+                                        onBackdropPress={toggleOverlayRemove}
                                         overlayStyle={style.promp}>
                                         <Text>apus ?</Text>
                                         <View style={style.btn}>
                                             <TouchableOpacity
                                                 onPress={() => {
                                                     dispatch(deleteCart(item.id))
-                                                    toggleOverlay()
+                                                    toggleOverlayRemove()
                                                 }}
                                                 style={style.yes}>
                                                 <Text style={style.str}>yes</Text>
                                             </TouchableOpacity>
-                                            <TouchableOpacity style={style.yes} onPress={() => toggleOverlay()}>
+                                            <TouchableOpacity style={style.yes} onPress={() => toggleOverlayRemove()}>
+                                                <Text style={style.str}>no</Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                    </Overlay>
+                                    <Overlay
+                                        isVisible={visible}
+                                        animationType={'fade'}
+                                        onBackdropPress={toggleOverlayDelete}
+                                        overlayStyle={style.promp}>
+                                        <Text>delete ?</Text>
+                                        <View style={style.btn}>
+                                            <TouchableOpacity
+                                                onPress={() => {
+                                                    dispatch(deleteCart(item.id))
+                                                    toggleOverlayDelete()
+                                                    deleteMenu()
+                                                }}
+                                                style={style.yes}>
+                                                <Text style={style.str}>yes</Text>
+                                            </TouchableOpacity>
+                                            <TouchableOpacity style={style.yes} onPress={() => toggleOverlayDelete()}>
                                                 <Text style={style.str}>no</Text>
                                             </TouchableOpacity>
                                         </View>

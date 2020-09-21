@@ -1,5 +1,5 @@
 {
-  "name": "kambing",
+  "name": "lawless",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -28,6 +28,7 @@
     "react-native-paper": "^4.1.0",
     "react-native-picker": "^4.3.7",
     "react-native-reanimated": "^1.13.0",
+    "react-native-rename": "^2.4.1",
     "react-native-safe-area-context": "^3.1.7",
     "react-native-screens": "^2.10.1",
     "react-native-vector-icons": "^7.1.0",
